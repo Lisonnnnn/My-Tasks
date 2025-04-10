@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <title>Form validation </title>
+
+        <style>
+            .error{
+                color: red;
+      font-size: 0.9em;
+      display: none;  
+            }
+        </style>
+    </head>
+    <body>
+        
+        <div class="Main_container">
+
+
+            <form id="registrationForm" onsubmit="return validateForm()">
+            <div>
+                <h1>Registration Form</h1>
+            </div>
+
+
+        <div>
+            <label>Email: <input type="Email" 
+                placeholder="Enter your email"
+                id="email"></input></label>
+                <div class="error" id="emailError">Enter a valid email</div>
+        </div></br>
+        
+        <div>
+            <label>Password: <input type="password" 
+                placeholder="Enter your password"
+                id="password" ></label>
+            <div class="error" id="passwordError">Password must be at least 6 characters</div>
+      </div>
+        </div></br>
+       <div>
+        <label>Date of birth: <input type="date" id="date"></label>
+        <div class="error" id="dobError">Please select your date of birth</div></div></br>
+       
+        <div>
+            <label for="gender">Gender: </label></br>
+            <input type="radio" name="gender" value="male"> Male
+        <input type="radio" name="gender" value="female"> Female
+        <div class="error" id="genderError">Please select your gender</div>
+        </div></br>
+        
+
+        <button type="submit">Register</button>
+        </form>
+        </div>
+    
+        <script >
+
+function validateForm(){
+
+
+    let isValid=true;
+    const email=document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+    const dob = document.getElementById('date').value;
+    const gender = document.querySelector('input[name="gender"]:checked');
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                document.getElementById('emailError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('emailError').style.display = 'none';
+            }
+
+            if (password.length < 6) {
+                document.getElementById('passwordError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('passwordError').style.display = 'none';
+            }
+
+          
+            if (dob === "") {
+                document.getElementById('dobError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('dobError').style.display = 'none';
+            }
+
+            if (!gender) {
+                document.getElementById('genderError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('genderError').style.display = 'none';
+            }
+
+            return isValid;
+        }
+
+
+
+        </script>
+        
+    </body>
+</html>
